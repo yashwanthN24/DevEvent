@@ -64,7 +64,7 @@ const EventDetails = async ({ params }: { params: Promise<string> }) => {
     }
 
     const response = await request.json();
-    event = response.event;
+    event = response.data;
 
     if (!event) {
       return notFound();
