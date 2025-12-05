@@ -1,8 +1,21 @@
 import EventCard from "@/components/EventCard";
 import ExploreBtn from "@/components/ExploreBtn";
-import events from "@/lib/constant";
+import { IEvent } from "@/database";
+// import events from "@/lib/constant";
 
-const page = () => {
+const page = async () => {
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+  const eventsData = await fetch(`${BASE_URL}/api/events`).then((res) =>
+    res.json()
+  );
+  const eventDetails = await fetch(`${BASE_URL}/api/events/cloud-next-2026`).then((res) =>
+    res.json()
+  );
+  console.log("Event Details Response:", eventDetails);
+  console.log("Events Data Response:", eventsData);
+
+  let events = eventsData.events;
+
   return (
     <section>
       <h1 className="text-center">
@@ -19,7 +32,7 @@ const page = () => {
         <ul className="events">
           {events &&
             events.length > 0 &&
-            events.map((event) => (
+            events.map((event: IEvent) => (
               <li key={event.title} className="list-none">
                 <EventCard {...event} />
               </li>
