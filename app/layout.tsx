@@ -3,6 +3,8 @@ import { Schibsted_Grotesk, Martian_Mono } from "next/font/google";
 import "./globals.css";
 import LightRays from "@/components/LightRays";
 import Navbar from "@/components/Navbar";
+import { Suspense } from "react";
+import Loader from "@/components/Loader";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -53,7 +55,9 @@ export default function RootLayout({
             distortion={0.01}
           />
         </div>
-        <main>{children}</main>
+        <Suspense fallback={<Loader />}>
+          <main>{children}</main>
+        </Suspense>
       </body>
     </html>
   );

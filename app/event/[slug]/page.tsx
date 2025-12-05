@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import EventDetails from "@/components/EventDetails";
+import { Loader } from "lucide-react";
 
 const EventDetailsPage = async ({
   params,
@@ -10,7 +11,7 @@ const EventDetailsPage = async ({
 
   return (
     <main>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <EventDetails params={slug} />
       </Suspense>
     </main>

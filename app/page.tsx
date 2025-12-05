@@ -1,16 +1,18 @@
 import EventCard from "@/components/EventCard";
 import ExploreBtn from "@/components/ExploreBtn";
 import { IEvent } from "@/database";
+import { cacheLife } from "next/cache";
 // import events from "@/lib/constant";
 
 const page = async () => {
+  // "use cache";
+  // cacheLife("hours");
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-  const eventsData = await fetch(`${BASE_URL}/api/events`).then((res) =>
-    res.json()
-  );
-  const eventDetails = await fetch(`${BASE_URL}/api/events/cloud-next-2026`).then((res) =>
-    res.json()
-  );
+  const eventsData2 = await fetch(`${BASE_URL}/api/events`);
+  const eventsData = await eventsData2.json();
+  const eventDetails = await fetch(
+    `${BASE_URL}/api/events/cloud-next-2026`
+  ).then((res) => res.json());
   console.log("Event Details Response:", eventDetails);
   console.log("Events Data Response:", eventsData);
 
